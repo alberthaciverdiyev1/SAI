@@ -11,7 +11,7 @@ public class SearchAttributeOptionConfiguration:IEntityTypeConfiguration<SearchA
         builder.ToTable("SearchAttributeOptions");
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Value).IsRequired().HasMaxLength(255);
-        builder.HasOne(x => x.SearchAttribute).WithMany(x => x.Options).HasForeignKey(x => x.AttributeId);
+        builder.HasOne(x => x.SearchAttribute).WithMany(x => x.Options).HasForeignKey(x => x.SearchAttributeId);
         builder.Property(x => x.CreatedAt).IsRequired();
     }
 }

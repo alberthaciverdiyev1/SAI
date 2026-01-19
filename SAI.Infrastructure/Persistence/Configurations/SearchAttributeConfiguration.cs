@@ -11,7 +11,7 @@ public class SearchAttributeConfiguration : IEntityTypeConfiguration<SearchAttri
         builder.ToTable("SearchAttributes");
         builder.HasKey(x => x.Id);
         builder.Property(x => x.Key).IsRequired().HasMaxLength(255);
-        builder.HasMany(x => x.Options).WithOne(x => x.SearchAttribute).HasForeignKey(x => x.AttributeId);
+        builder.HasMany(x => x.Options).WithOne(x => x.SearchAttribute).HasForeignKey(x => x.SearchAttributeId);
         builder.HasIndex(x => x.Key).IsUnique();
         builder.Property(x => x.CreatedAt).IsRequired();
 
