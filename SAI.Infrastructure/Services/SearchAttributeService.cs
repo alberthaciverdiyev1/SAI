@@ -2,12 +2,13 @@ using SAI.Core.DTOs.SearchAttribute;
 using SAI.Core.Entities;
 using SAI.Core.Interfaces.Repositories;
 using SAI.Core.Interfaces.Services;
+using System.Net;
 
 namespace SAI.Infrastructure.Services;
 
 public class SearchAttributeService(ISearchAttributeRepository repository) : ISearchAttributeService
 {
-    public async Task<SearchAttributeResponse> CreateAsync(SearchAttributeCreateRequest request)
+    public async Task<ServiceResult<SearchAttributeResponse>> CreateAsync(SearchAttributeCreateRequest request)
     {
         var attribute = new SearchAttribute
         {
@@ -15,40 +16,72 @@ public class SearchAttributeService(ISearchAttributeRepository repository) : ISe
         };
 
         await repository.AddAsync(attribute);
-        return new SearchAttributeResponse(attribute.Id, attribute.Key, attribute.Options.Select(x => x.Value));
+
+        var response = new SearchAttributeResponse(
+            attribute.Id,
+            attribute.Key,
+            attribute.Options.Select(x => x.Value)
+        );
+
+        return ServiceResult<SearchAttributeResponse>.Success(response, HttpStatusCode.Created);
     }
 
-    public async Task<SearchAttributeResponse> UpdateAsync(Guid id, SearchAttributeUpdateRequest request)
+    public async Task<ServiceResult<SearchAttributeResponse>> UpdateAsync(Guid id, SearchAttributeUpdateRequest request)
     {
         var attribute = await repository.GetByIdAsync(id);
-        if (attribute is null) return null;
+        if (attribute == null)
+            return ServiceResult<SearchAttributeResponse>.Fail($"Attribute with id {id} not found", HttpStatusCode.NotFound);
 
         attribute.Key = request.Key;
         await repository.UpdateAsync(attribute);
-        return new SearchAttributeResponse(attribute.Id, attribute.Key, attribute.Options.Select(x => x.Value));
+
+        var response = new SearchAttributeResponse(
+            attribute.Id,
+            attribute.Key,
+            attribute.Options.Select(x => x.Value)
+        );
+
+        return ServiceResult<SearchAttributeResponse>.Success(response);
     }
 
-    public async Task<bool> DeleteAsync(Guid id)
+    public async Task<ServiceResult<bool>> DeleteAsync(Guid id)
     {
         var attribute = await repository.GetByIdAsync(id);
-        if (attribute is null) return false;
+        if (attribute == null)
+            return ServiceResult<bool>.Fail($"Attribute with id {id} not found", HttpStatusCode.NotFound);
 
         await repository.DeleteAsync(attribute);
-        return true;
+        return ServiceResult<bool>.Success(true, HttpStatusCode.NoContent);
     }
 
-    public async Task<SearchAttributeResponse?> GetByIdAsync(Guid id)
+    public async Task<ServiceResult<SearchAttributeResponse>?> GetByIdAsync(Guid id)
     {
-        var attributes = await repository.GetByIdAsync(id);
-         if(attributes is null) return null;
+        var attribute = await repository.GetByIdAsync(id);
+        if (attribute == null)
+            return ServiceResult<SearchAttributeResponse>.Fail($"Attribute with id {id} not found", HttpStatusCode.NotFound);
 
-         return new SearchAttributeResponse(attributes.Id, attributes.Key, attributes.Options.Select(x => x.Value));
+        var response = new SearchAttributeResponse(
+            attribute.Id,
+            attribute.Key,
+            attribute.Options.Select(x => x.Value)
+        );
+
+        return ServiceResult<SearchAttributeResponse>.Success(response);
     }
 
-    public async Task<IEnumerable<SearchAttributeResponse>> GetAllAsync()
+    public async Task<ServiceResult<IEnumerable<SearchAttributeResponse>>> GetAllAsync()
     {
         var attributes = await repository.GetAllAsync();
-        
-        return attributes.Select(x => new SearchAttributeResponse(x.Id, x.Key, x.Options.Select(y => y.Value)));
+
+        if (!attributes.Any())
+            return ServiceResult<IEnumerable<SearchAttributeResponse>>.Fail("No search attributes found", HttpStatusCode.NotFound);
+
+        var responses = attributes.Select(x => new SearchAttributeResponse(
+            x.Id,
+            x.Key,
+            x.Options.Select(y => y.Value)
+        ));
+
+        return ServiceResult<IEnumerable<SearchAttributeResponse>>.Success(responses);
     }
 }

@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
+using SAI.API.Controllers.Base;
 using SAI.Core.DTOs.SearchAttribute;
 using SAI.Core.Interfaces.Services;
 
 namespace SAI.API.Controllers;
 
 [ApiController]
-[Route("search-attributes")]
-public class SearchAttributeController(ISearchAttributeService service) : Controller
+[Route("search-attribute")]
+public class SearchAttributeController(ISearchAttributeService service) : CustomBaseController
 {
-
     
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<SearchAttributeResponse>>> GetAllAsync() => Ok(await service.GetAllAsync());
+    public async Task<IActionResult> GetAllAsync() => CreateActionResult(await service.GetAllAsync());
     
     
 }
