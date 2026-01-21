@@ -24,10 +24,10 @@ public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(op
         );
 
         modelBuilder.Entity<SearchAttributeOption>().HasData(
-            new SearchAttributeOption { Id = Guid.NewGuid(), SearchAttributeId = cityAttrId, Value = "Baku" },
-            new SearchAttributeOption { Id = Guid.NewGuid(), SearchAttributeId = cityAttrId, Value = "Ganja" },
-            new SearchAttributeOption { Id = Guid.NewGuid(), SearchAttributeId = brandAttrId, Value = "Apple" },
-            new SearchAttributeOption { Id = Guid.NewGuid(), SearchAttributeId = brandAttrId, Value = "Samsung" }
+            new SearchAttributeOption { Id = Guid.NewGuid(), SearchAttributeId = cityAttrId, Value = "Baku",ValueId = "uydbajs"},
+            new SearchAttributeOption { Id = Guid.NewGuid(), SearchAttributeId = cityAttrId, Value = "Ganja",ValueId = "123"},
+            new SearchAttributeOption { Id = Guid.NewGuid(), SearchAttributeId = brandAttrId, Value = "Apple",ValueId = "090"},
+            new SearchAttributeOption { Id = Guid.NewGuid(), SearchAttributeId = brandAttrId, Value = "Samsung",ValueId = "123" }
         );
         
         //End Seeding Data

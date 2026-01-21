@@ -16,11 +16,13 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Start Repository
 builder.Services.AddScoped<ISearchAttributeRepository, SearchAttributeRepository>();
+builder.Services.AddScoped<ISearchAttributeOptionRepository, SearchAttributeOptionRepository>();
 
 // End Repository
 
 // Start Services
 builder.Services.AddScoped<ISearchAttributeService, SearchAttributeService>();
+builder.Services.AddScoped<ISearchAttributeOptionService, SearchAttributeOptionService>();
 // End Services
 
 builder.Services.AddControllers();
