@@ -12,6 +12,17 @@ public class SearchAttributeController(ISearchAttributeService service) : Custom
     
     [HttpGet]
     public async Task<IActionResult> GetAllAsync() => CreateActionResult(await service.GetAllAsync());
+
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetByIdAsync(Guid id) => CreateActionResult(await service.GetByIdAsync(id));
     
+    [HttpPost]
+    public async Task<IActionResult> CreateAsync(SearchAttributeCreateRequest request) => CreateActionResult(await service.CreateAsync(request));
+    
+    [HttpPut("{id:guid}")]
+    public async Task<IActionResult> UpdateAsync(Guid id, SearchAttributeUpdateRequest request) => CreateActionResult(await service.UpdateAsync(id, request));
+    [HttpDelete("{id:guid}")]
+    public async Task<IActionResult> DeleteAsync(Guid id) => CreateActionResult(await service.DeleteAsync(id));
+
     
 }
