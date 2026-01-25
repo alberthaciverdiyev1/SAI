@@ -46,14 +46,14 @@ namespace SAI.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("90caf9da-f098-4993-a699-e239e8981d1b"),
-                            CreatedAt = new DateTime(2026, 1, 21, 21, 2, 42, 303, DateTimeKind.Utc).AddTicks(3163),
+                            Id = new Guid("bbd111c0-e8cb-4df4-8ddc-1ee168701df4"),
+                            CreatedAt = new DateTime(2026, 1, 22, 12, 22, 34, 258, DateTimeKind.Utc).AddTicks(7568),
                             Key = "City"
                         },
                         new
                         {
-                            Id = new Guid("92cd3861-57dc-435f-a561-69360bf86ad0"),
-                            CreatedAt = new DateTime(2026, 1, 21, 21, 2, 42, 303, DateTimeKind.Utc).AddTicks(3187),
+                            Id = new Guid("3591b6a0-2569-4572-885c-8e6ef5358a48"),
+                            CreatedAt = new DateTime(2026, 1, 22, 12, 22, 34, 258, DateTimeKind.Utc).AddTicks(7587),
                             Key = "Brand"
                         });
                 });
@@ -89,33 +89,33 @@ namespace SAI.Infrastructure.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("088cfeb6-9372-4fce-93c7-5f596e6b5760"),
-                            CreatedAt = new DateTime(2026, 1, 21, 21, 2, 42, 303, DateTimeKind.Utc).AddTicks(3368),
-                            SearchAttributeId = new Guid("90caf9da-f098-4993-a699-e239e8981d1b"),
+                            Id = new Guid("23e2be53-c37e-4be3-bccb-ffde84c9597a"),
+                            CreatedAt = new DateTime(2026, 1, 22, 12, 22, 34, 258, DateTimeKind.Utc).AddTicks(7768),
+                            SearchAttributeId = new Guid("bbd111c0-e8cb-4df4-8ddc-1ee168701df4"),
                             Value = "Baku",
                             ValueId = "uydbajs"
                         },
                         new
                         {
-                            Id = new Guid("c3ccc437-f273-49d7-bf50-6e420ac20b0b"),
-                            CreatedAt = new DateTime(2026, 1, 21, 21, 2, 42, 303, DateTimeKind.Utc).AddTicks(3396),
-                            SearchAttributeId = new Guid("90caf9da-f098-4993-a699-e239e8981d1b"),
+                            Id = new Guid("72c1eeb9-c1df-44ec-9269-9637513b2056"),
+                            CreatedAt = new DateTime(2026, 1, 22, 12, 22, 34, 258, DateTimeKind.Utc).AddTicks(7796),
+                            SearchAttributeId = new Guid("bbd111c0-e8cb-4df4-8ddc-1ee168701df4"),
                             Value = "Ganja",
                             ValueId = "123"
                         },
                         new
                         {
-                            Id = new Guid("b896e7e1-a73a-4e94-ba54-71a06d3376c1"),
-                            CreatedAt = new DateTime(2026, 1, 21, 21, 2, 42, 303, DateTimeKind.Utc).AddTicks(3429),
-                            SearchAttributeId = new Guid("92cd3861-57dc-435f-a561-69360bf86ad0"),
+                            Id = new Guid("42ad5237-2f46-4b42-afa9-b6cac00008ed"),
+                            CreatedAt = new DateTime(2026, 1, 22, 12, 22, 34, 258, DateTimeKind.Utc).AddTicks(7829),
+                            SearchAttributeId = new Guid("3591b6a0-2569-4572-885c-8e6ef5358a48"),
                             Value = "Apple",
                             ValueId = "090"
                         },
                         new
                         {
-                            Id = new Guid("65ee8b90-183b-49bb-a7d4-18f8362cd22c"),
-                            CreatedAt = new DateTime(2026, 1, 21, 21, 2, 42, 303, DateTimeKind.Utc).AddTicks(3458),
-                            SearchAttributeId = new Guid("92cd3861-57dc-435f-a561-69360bf86ad0"),
+                            Id = new Guid("c938abd4-f7e1-4355-81bb-31e361f8b5d6"),
+                            CreatedAt = new DateTime(2026, 1, 22, 12, 22, 34, 258, DateTimeKind.Utc).AddTicks(7857),
+                            SearchAttributeId = new Guid("3591b6a0-2569-4572-885c-8e6ef5358a48"),
                             Value = "Samsung",
                             ValueId = "123"
                         });

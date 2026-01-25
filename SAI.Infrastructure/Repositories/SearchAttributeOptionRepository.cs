@@ -9,6 +9,8 @@ public class SearchAttributeOptionRepository(AppDbContext context) : ISearchAttr
     public async Task AddAsync(SearchAttributeOption entity)
     {
         await context.SearchAttributeOptions.AddAsync(entity);
+        await context.SaveChangesAsync();
+
     }
 
     public async Task UpdateAsync(SearchAttributeOption entity)

@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddHttpClient();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("Connection")));
@@ -23,6 +23,13 @@ builder.Services.AddScoped<ISearchAttributeOptionRepository, SearchAttributeOpti
 // Start Services
 builder.Services.AddScoped<ISearchAttributeService, SearchAttributeService>();
 builder.Services.AddScoped<ISearchAttributeOptionService, SearchAttributeOptionService>();
+builder.Services.AddHttpClient<ILlmService, DeepSeekR1Service>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:11434/");
+});
+
+//Sil ha
+builder.Services.AddScoped<SearchQueryBuilderService>();
 // End Services
 
 builder.Services.AddControllers();
